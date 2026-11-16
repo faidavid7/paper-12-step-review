@@ -4,7 +4,33 @@
 
 適用情境：讀論文、審別人的稿、改自己的論文、預測 reviewer 會問的問題（ICLR / NeurIPS / CVPR / ICML 等）。
 
-## 檔案
+## 拆分版：9 個可單獨執行的 skill（`skills/`）
+
+原 12 步拆成 9 個 skill，可以只跑需要的部分。各 skill 共用工作資料夾 `<論文簡稱>_review/` 與同一份 `issues.json`，問題編號沿用原步驟號（P1-x…P12-x），最後由 `paper-revision` 合併成總報告與註解 PDF。
+
+| skill | 原步驟 | 做什麼 |
+|---|---|---|
+| `paper-motivation-check` | 1 | motivation 鏈（現象→重要性→缺口→主張）、problem setting、setting 是否貼近真實 |
+| `paper-survey-and-naive-ideas` | 2＋3 | 直覺解法為何不行、研究線脈絡、引用擴充找遺漏工作、產出不足清單 D1…Dn |
+| `paper-method-check` | 4 | 設計決策 M1…Mn 的合理性、推導驗證、方法深度、預期結果 X1…Xn、理論基礎 |
+| `paper-experiment-check` | 5 | D→實驗、M→ablation、X→實際結果、顯著性、公平性、一致性與重現性 |
+| `paper-novelty-positioning` | 6＋8 | 引用 survey／method／experiment 報告，判斷有無明顯 novelty、定位好壞、整體傾向 |
+| `paper-limitations` | 7 | 彙整剩餘問題、overclaim、分流（修掉／縮小 claim／寫成限制）、Limitations 草稿 |
+| `paper-presentation-check` | 9 | 逐層閱讀、ASD-STE100、Causal、每張圖的分析 |
+| `paper-reviewer-personas` | 10 | 8 種 reviewer 身分提問；自己的論文附 rebuttal 草稿 |
+| `paper-revision` | 11＋12 | 修改計畫、合規檢查、合併成總報告與註解 PDF、交付前檢查 |
+
+建議順序：motivation → survey → method → experiment → novelty-positioning → limitations → presentation → personas → revision。上游報告不存在時，各 skill 的「缺少上游產出時」一節說明怎麼處理。
+
+`skills/paper-review-shared/` 放共用規範（`conventions.md`：工作資料夾、問題編號、`issues.json` 格式）與寫作規範（`writing-rules.md`）。它不是 skill，但其他 skill 用 `../paper-review-shared/` 讀取它。
+
+**安裝（Claude Code）**：把 `skills/` 底下所有資料夾（含 `paper-review-shared`）複製到同一個 skills 目錄：
+
+```bash
+cp -r skills/* ~/.claude/skills/
+```
+
+## 檔案（原 12 步版）
 
 | 檔案 | 用途 |
 |---|---|
