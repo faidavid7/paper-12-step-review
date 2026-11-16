@@ -64,14 +64,16 @@ else:
 
 # 3. PDF：頁數、字型
 doc = pymupdf.open(a.pdf)
+# CVPR／ICCV review 模式會在標題前後加行號，例如 References 後面接 533
+REF = r"\s*(\d+\s*)?(References|Bibliography|參考文獻)(\s+\d+)?\s*"
 if a.venue_pages:
     ref = next((p for p in doc for b in p.get_text("blocks")
-                if re.fullmatch(r"\s*(\d+\s*)?(References|Bibliography|參考文獻)\s*", b[4])), None)
+                if re.fullmatch(REF, b[4])), None)
     if ref is None:
         errs.append("找不到 References 標題，無法判斷正文頁數，請人工確認")
     else:
         y = next(b[1] for b in ref.get_text("blocks")
-                 if re.fullmatch(r"\s*(\d+\s*)?(References|Bibliography|參考文獻)\s*", b[4]))
+                 if re.fullmatch(REF, b[4]))
         body = ref.number + (1 if y > ref.rect.height * 0.15 else 0)
         if body > a.venue_pages:
             errs.append(f"正文約 {body} 頁，超過上限 {a.venue_pages} 頁")
