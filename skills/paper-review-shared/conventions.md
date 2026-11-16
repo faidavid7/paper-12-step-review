@@ -15,6 +15,7 @@ paper-* 系列的 9 個 skill 都先讀本檔。本檔定義工作資料夾、�
 | paper-presentation-check | 9 | P9-x | 無 |
 | paper-reviewer-personas | 10 | P10-x | 所有已產生的報告（選用） |
 | paper-revision | 11、12 | P11-x、P12-x | 所有已產生的報告與 `issues.json` |
+| paper-polish | 無（直接改 LaTeX） | 修改編號 C1…Cn | P9-x（presentation）；paper-limitations 報告（選用） |
 
 - 問題編號沿用原 12 步的步驟號。這樣各 skill 的問題可以合併成一份 `issues.json`，PDF 配色也不變。
 - 各 skill 可以單獨執行。上游產出不存在時，依各 skill 的「缺少上游產出時」一節處理。
