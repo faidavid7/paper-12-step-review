@@ -6,7 +6,7 @@
 
 ## 拆分版：9 個可單獨執行的 skill（`skills/`）
 
-原 12 步拆成 9 個 skill，可以只跑需要的部分。各 skill 共用工作資料夾 `<論文簡稱>_review/` 與同一份 `issues.json`，問題編號沿用原步驟號（P1-x…P12-x），最後由 `paper-revision` 合併成總報告與註解 PDF。
+原 12 步拆成 9 個 skill，另加 1 個修飾用的 skill，可以只跑需要的部分。各 skill 共用工作資料夾 `<論文簡稱>_review/` 與同一份 `issues.json`，問題編號沿用原步驟號（P1-x…P12-x），最後由 `paper-revision` 合併成總報告與註解 PDF。
 
 | skill | 原步驟 | 做什麼 |
 |---|---|---|
@@ -20,7 +20,9 @@
 | `paper-reviewer-personas` | 10 | 8 種 reviewer 身分提問；自己的論文附 rebuttal 草稿 |
 | `paper-revision` | 11＋12 | 修改計畫、合規檢查、合併成總報告與註解 PDF、交付前檢查 |
 
-建議順序：motivation → survey → method → experiment → novelty-positioning → limitations → presentation → personas → revision。上游報告不存在時，各 skill 的「缺少上游產出時」一節說明怎麼處理。
+另外有 `paper-polish`：不改實驗，直接改 LaTeX 原始檔。內容包括依 ASD-STE100 改寫文字、處理弱點（縮小 claim、先回應、limitation 寫進論文），以及用全篇統一的樣式重畫數據圖（matplotlib）與方法圖（TikZ）。每批修改都先問你，同意後才改。最後用 `check_polish.py` 確認數字、表格與公式都沒有改變。
+
+建議順序：motivation → survey → method → experiment → novelty-positioning → limitations → presentation → personas → revision；要動手改 LaTeX 時接 polish。上游報告不存在時，各 skill 的「缺少上游產出時」一節說明怎麼處理。
 
 `skills/paper-review-shared/` 放共用規範（`conventions.md`：工作資料夾、問題編號、`issues.json` 格式）與寫作規範（`writing-rules.md`）。它不是 skill，但其他 skill 用 `../paper-review-shared/` 讀取它。
 
