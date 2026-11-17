@@ -3,3 +3,6 @@ __pycache__/
 .claude/
 .env
 *_annotated.pdf
+*.bak
+*.bak*
+node_modules/
